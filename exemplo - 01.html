@@ -11,6 +11,10 @@
             font-family: 'Arial', sans-serif;
             color: #333;
             background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
         }
         .header {
             background-color: #6f42c1;
@@ -19,41 +23,35 @@
             text-align: center;
             font-size: 24px;
         }
-        .profile-pic {
-            width: 60px;
-            height: 60px;
-            background-color: #fff;
-            border-radius: 50%;
+        .container {
+            flex: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 10px;
-            border: 3px solid #fff;
-            overflow: hidden;
-        }
-        .profile-pic img {
-            width: 100%;
-            height: auto;
-        }
-        .qr-code {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
         }
         .qr-code img {
-            width: 50%;
+            width: 150px;
+            height: 150px;
         }
-        .activity {
-            background-color: #ffffff;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
+        .scan-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
             text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px;
+            cursor: pointer;
+            border-radius: 5px;
         }
         .navbar {
             background-color: #fff;
             border-top: 1px solid #ccc;
             text-align: center;
+            padding: 10px 0;
         }
         .navbar a {
             flex-grow: 1;
@@ -64,51 +62,19 @@
         .navbar .active {
             color: #6f42c1;
         }
-        .suggestion {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            background-color: #6f42c1;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            line-height: 60px;
-            margin: 5px;
-        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>Bem vindo a Fidel!</h2>
-    </div>
+    <div class="header">Bem vindo a Fidel!</div>
     <div class="container">
         <div class="qr-code">
             <img src="https://via.placeholder.com/150" alt="QR Code">
         </div>
-        <div class="text-center mb-3">
-            Escaneie o QR Code
-        </div>
-        <div class="text-center fw-bold mb-2">
-            Sugestões para você
-        </div>
-        <div class="d-flex justify-content-center">
-            <div class="suggestion"><i class="fas fa-plus"></i></div>
-            <div class="suggestion">TL</div>
-            <div class="suggestion">DD</div>
-            <div class="suggestion">RL</div>
-            <div class="text-center w-100 mt-3">
-                Ver mais
-            </div>
-        </div>
-        <div class="activity">
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-link">Todos</button>
-                <button class="btn btn-link">Minhas</button>
-            </div>
-            Está tudo quieto por aqui!
+        <div>
+            <button class="scan-button">Escanear o QR Code</button>
         </div>
     </div>
-    <nav class="navbar fixed-bottom d-flex">
+    <nav class="navbar fixed-bottom d-flex justify-content-around">
         <a href="#" class="nav-link"><i class="fas fa-home"></i><br>Início</a>
         <a href="#" class="nav-link"><i class="fas fa-store"></i><br>Lojas</a>
         <a href="#" class="nav-link"><i class="fas fa-wallet"></i><br>Carteira</a>
