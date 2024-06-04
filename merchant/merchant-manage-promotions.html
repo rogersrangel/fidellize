@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Promoções - Fidellize</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden; /* Ensure the body does not scroll */
+        }
+        .header {
+            background-color: #2519ca;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 0 0 20px 20px;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+            padding-bottom: 80px; /* Ensure enough space for navbar */
+            overflow-y: auto; /* Enable scrolling within the container */
+            overflow-x: hidden;
+        }
+        .section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .section h4 {
+            color: #2519ca;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn {
+            background-color: #2519ca;
+            color: white;
+            border-radius: 50px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #1936b8;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .icon-button {
+            background-color: transparent;
+            border: none;
+            font-size: 18px;
+            color: #2519ca;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .icon-button:hover {
+            color: #1936b8;
+        }
+        .navbar {
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .navbar a {
+            flex-grow: 1;
+            padding: 5px;
+            color: #1936b8;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .navbar .active {
+            color: #63638f;
+        }
+        .small-btn {
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 20px;
+        }
+        .modal .modal-content {
+            padding: 20px;
+        }
+        .modal .modal-header {
+            border-bottom: none;
+        }
+        .modal .modal-footer {
+            border-top: none;
+        }
+        .modal .form-control {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Gerenciar Promoções</div>
+    <div class="container">
+        <div class="section">
+            <h4>Adicionar Promoção</h4>
+            <input type="text" class="form-control" placeholder="Nome da Promoção">
+            <input type="text" class="form-control" placeholder="Descrição da Promoção">
+            <input type="number" class="form-control" placeholder="Custo em Pontos">
+            <input type="date" class="form-control" placeholder="Validade dos Pontos">
+            <input type="file" class="form-control" aria-label="Foto">
+            <label for="formFile" class="form-label">Opcional Foto</label>
+            <button class="btn">Adicionar Promoção</button>
+        </div>
+        <div class="section">
+            <h4>Promoções Atuais</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>QR Code</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Custo (Pontos)</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button class="icon-button" data-bs-toggle="modal" data-bs-target="#qrCodeModal1"><i class="fas fa-qrcode"></i></button>
+                            </td>
+                            <td>Corte de Cabelo Grátis</td>
+                            <td>A cada 10 cortes, ganhe 1 grátis.</td>
+                            <td>10</td>
+                            <td>
+                                <button class="icon-button" data-bs-toggle="modal" data-bs-target="#editPromoModal1"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="icon-button" data-bs-toggle="modal" data-bs-target="#qrCodeModal2"><i class="fas fa-qrcode"></i></button>
+                            </td>
+                            <td>Desconto de 20%</td>
+                            <td>Ganhe 20% de desconto na próxima compra.</td>
+                            <td>5</td>
+                            <td>
+                                <button class="icon-button" data-bs-toggle="modal" data-bs-target="#editPromoModal2"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Adicione mais promoções conforme necessário -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar fixed-bottom d-flex justify-content-around">
+        <a href="merchant-dashboard.html" class="nav-link"><i class="fas fa-home"></i><br>Dashboard</a>
+        <a href="merchant-manage-points.html" class="nav-link"><i class="fas fa-coins"></i><br>Pontos</a>
+        <a href="merchant-manage-promotions.html" class="nav-link active"><i class="fas fa-tags"></i><br>Promoções</a>
+        <a href="merchant-transaction-history.html" class="nav-link"><i class="fas fa-history"></i><br>Transações</a>
+        <a href="settings-merchant.html" class="nav-link"><i class="fas fa-cog"></i><br>Configurações</a>
+    </nav>
+
+    <!-- Modal para editar promoção 1 -->
+    <div class="modal fade" id="editPromoModal1" tabindex="-1" aria-labelledby="editPromoModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPromoModalLabel1">Editar Promoção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Nome da Promoção">
+                    <input type="text" class="form-control" placeholder="Descrição da Promoção">
+                    <input type="number" class="form-control" placeholder="Custo em Pontos">
+                    <input type="date" class="form-control" placeholder="Validade dos Pontos">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Remover</button>
+                    <button type="button" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar promoção 2 -->
+    <div class="modal fade" id="editPromoModal2" tabindex="-1" aria-labelledby="editPromoModalLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPromoModalLabel2">Editar Promoção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="Nome da Promoção">
+                    <input type="text" class="form-control" placeholder="Descrição da Promoção">
+                    <input type="number" class="form-control" placeholder="Custo em Pontos">
+                    <input type="date" class="form-control" placeholder="Validade dos Pontos">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Remover</button>
+                    <button type="button" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para QR Code 1 -->
+    <div class="modal fade" id="qrCodeModal1" tabindex="-1" aria-labelledby="qrCodeModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalLabel1">Nome da Loja - Escaneie o QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Apontar a câmera para escanear o QR Code:</p>
+                    <img src="https://via.placeholder.com/150" alt="QR Code">
+                    <p>Data de Criação: 01/06/2024</p>
+                    <p>Validade: 30/06/2024</p>
+                    <p>Descrição: Ganhe um desconto de 10% na sua próxima compra ao escanear este QR Code.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="exportToPDF('qrCodeModal1')">Exportar PDF</button>
+                    <button type="button" class="btn btn-info" onclick="shareQRCode('qrCodeModal1')">Compartilhar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para QR Code 2 -->
+    <div class="modal fade" id="qrCodeModal2" tabindex="-1" aria-labelledby="qrCodeModalLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalLabel2">Nome da Loja - Escaneie o QR Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Apontar a câmera para escanear o QR Code:</p>
+                    <img src="https://via.placeholder.com/150" alt="QR Code">
+                    <p>Data de Criação: 01/06/2024</p>
+                    <p>Validade: 30/06/2024</p>
+                    <p>Descrição: Ganhe um desconto de 10% na sua próxima compra ao escanear este QR Code.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="exportToPDF('qrCodeModal2')">Exportar PDF</button>
+                    <button type="button" class="btn btn-info" onclick="shareQRCode('qrCodeModal2')">Compartilhar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function exportToPDF(modalId) {
+            // Função para exportar o conteúdo do modal para PDF
+            alert('Exportar para PDF ainda não implementado.');
+        }
+
+        function shareQRCode(modalId) {
+            // Função para compartilhar o QR Code
+            alert('Compartilhar QR Code ainda não implementado.');
+        }
+    </script>
+</body>
+</html>
