@@ -53,10 +53,14 @@
         .profile-section .form-control, .security-section .form-control {
             margin-bottom: 10px;
         }
-        .btn-save, .btn-change-password, .btn-logout, .btn-delete-account {
+        .btn {
             width: 100%;
             margin-top: 10px;
             border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Add space between icon and text */
         }
         .btn-save, .btn-change-password {
             background-color: #2519ca;
@@ -93,9 +97,10 @@
         }
         .navbar a {
             flex-grow: 1;
-            padding: 10px;
+            padding: 5px;
             color: #1936b8;
             text-decoration: none;
+            font-size: 12px; /* Adjust font size for better spacing */
         }
         .navbar .active {
             color: #63638f;
@@ -111,14 +116,14 @@
             <input type="file" class="form-control">
             <input type="text" class="form-control" placeholder="Nome">
             <input type="email" class="form-control" placeholder="Email">
-            <button class="btn btn-save">Salvar</button>
+            <button class="btn btn-save"><i class="fas fa-save"></i>Salvar</button>
         </div>
         <div class="security-section">
             <h4>Segurança</h4>
             <input type="password" class="form-control" placeholder="Senha Atual">
             <input type="password" class="form-control" placeholder="Nova Senha">
             <input type="password" class="form-control" placeholder="Confirmar Nova Senha">
-            <button class="btn btn-change-password">Alterar Senha</button>
+            <button class="btn btn-change-password"><i class="fas fa-key"></i>Alterar Senha</button>
         </div>
         <div class="preferences-section">
             <h4>Preferências</h4>
@@ -137,17 +142,17 @@
         </div>
         <div class="actions-section">
             <h4>Ações</h4>
-            <button class="btn btn-logout">Sair</button>
-            <button class="btn btn-delete-account">Excluir Conta</button>
+            <button class="btn btn-logout"><i class="fas fa-sign-out-alt"></i>Sair</button>
+            <button class="btn btn-delete-account"><i class="fas fa-trash-alt"></i>Excluir Conta</button>
         </div>
     </div>
     <nav class="navbar fixed-bottom d-flex justify-content-around">
         <a href="index.html" class="nav-link"><i class="fas fa-home"></i><br>Início</a>
         <a href="stores.html" class="nav-link"><i class="fas fa-store"></i><br>Lojas</a>
         <a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i><br>Carteira</a>
-        <a href="notifications.html" class="nav-link active"><i class="fas fa-bell"></i><br>Notificações</a>
-        <a href="settings-client.html" class="nav-link"><i class="fas fa-cog"></i><br>Ajustes</a>
-     </nav>
+        <a href="notifications.html" class="nav-link"><i class="fas fa-bell"></i><br>Notificações</a>
+        <a href="settings-client.html" class="nav-link active"><i class="fas fa-cog"></i><br>Ajustes</a>
+    </nav>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
